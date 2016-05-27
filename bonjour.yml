@@ -1,0 +1,30 @@
+- hosts: localhost
+  become: no
+
+  pre_tasks:
+    - shell: ./bonjour.py
+      register: bonjour_raw
+
+    - set_fact:
+        bonjour: "{{ bonjour_raw.stdout | from_yaml }}"
+
+  tasks:
+    - name: bonjour madame
+      slack:
+        username: "{{ slack_bot_name }}"
+        channel: "{{ slack_channel }}"
+        token: "{{ slack_webhook_token }}"
+        attachments:
+          - image_url: "{{ bonjour.madame }}"
+            title: "Dites bonjour à Madame"
+            text: "Dites bonjour à Madame"
+
+    - name: bonjour monsieur
+      slack:
+        username: "{{ slack_bot_name }}"
+        channel: "{{ slack_channel }}"
+        token: "{{ slack_webhook_token }}"
+        attachments:
+          - image_url: "{{ bonjour.monsieur }}"
+            title: "Dites bonjour à Monsieur"
+            text: "Dites bonjour à Monsieur"
