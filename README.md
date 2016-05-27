@@ -14,7 +14,7 @@ pip install -r requirements.txt
 ---
 slack_webhook_token: "-- see https://slack.com/apps/manage/A0F7XDUAZ-incoming-webhooks for getting yours --"
 slack_channel: "#random"
-slack_bot_name: "PervBot"
+slack_bot_name: "AnsiBot"
 ```
 
 * Enjoy:
